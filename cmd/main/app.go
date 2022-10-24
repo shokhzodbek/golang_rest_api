@@ -9,6 +9,7 @@ import (
 
 	"github.com/julienschmidt/httprouter"
 	"github.com/shokhzodbek/internal/user"
+	"github.com/shokhzodbek/pkg/logging"
 )
 
 func IndexHandler(rw http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -17,6 +18,8 @@ func IndexHandler(rw http.ResponseWriter, r *http.Request, p httprouter.Params) 
 
 }
 func main() {
+	logger:=logging.GetLoger()
+	logger.Trace()
 	fmt.Println("Create router")
 	// router created
 	router := httprouter.New()
@@ -31,6 +34,8 @@ func main() {
 }
 
 func start( router *httprouter.Router)  {
+	logger:=logging.GetLoger()
+	logger.Info()
 	fmt.Println("Start application")
 	listen,err :=net.Listen("tcp",":8000")
     if err!=nil {
